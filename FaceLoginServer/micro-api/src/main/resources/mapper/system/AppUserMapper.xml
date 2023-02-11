@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto17.faceLogin.mapper.AppUserMapper">
+    
+    <resultMap type="AppUser" id="AppUserResult">
+        <result property="userId"    column="user_id"    />
+        <result property="facialId"    column="facial_id"    />
+        <result property="userNickName"    column="user_nick_name"    />
+        <result property="userTrueName"    column="user_true_name"    />
+        <result property="userAge"    column="user_age"    />
+        <result property="userGender"    column="user_gender"    />
+        <result property="regTime"    column="reg_time"    />
+        <result property="lastLoginTime"    column="last_login_time"    />
+    </resultMap>
+
+    <sql id="selectAppUserVo">
+        select user_id, facial_id, user_nick_name, user_true_name, user_age, user_gender, reg_time, last_login_time from app_user
+    </sql>
+
+    <select id="selectAppUserList" parameterType="AppUser" resultMap="AppUserResult">
+        <include refid="selectAppUserVo"/>
+        <where>  
+            <if test="facialId != null  and facialId != ''"> and facial_id = #{facialId}</if>
+            <if test="userNickName != null  and userNickName != ''"> and user_nick_name like concat('%', #{userNickName}, '%')</if>
+            <if test="userTrueName != null  and userTrueName != ''"> and user_true_name like concat('%', #{userTrueName}, '%')</if>
+            <if test="userAge != null "> and user_age = #{userAge}</if>
+            <if test="userGender != null  and userGender != ''"> and user_gender = #{userGender}</if>
+            <if test="regTime != null "> and reg_time = #{regTime}</if>
+            <if test="lastLoginTime != null "> and last_login_time = #{lastLoginTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectAppUserById" parameterType="Long" resultMap="AppUserResult">
+        <include refid="selectAppUserVo"/>
+        where user_id = #{userId}
+    </select>
+        
+    <insert id="insertAppUser" parameterType="AppUser" useGeneratedKeys="true" keyProperty="userId">
+        insert into app_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="facialId != null">facial_id,</if>
+            <if test="userNickName != null">user_nick_name,</if>
+            <if test="userTrueName != null">user_true_name,</if>
+            <if test="userAge != null">user_age,</if>
+            <if test="userGender != null">user_gender,</if>
+            <if test="regTime != null">reg_time,</if>
+            <if test="lastLoginTime != null">last_login_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="facialId != null">#{facialId},</if>
+            <if test="userNickName != null">#{userNickName},</if>
+            <if test="userTrueName != null">#{userTrueName},</if>
+            <if test="userAge != null">#{userAge},</if>
+            <if test="userGender != null">#{userGender},</if>
+            <if test="regTime != null">#{regTime},</if>
+            <if test="lastLoginTime != null">#{lastLoginTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAppUser" parameterType="AppUser">
+        update app_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="facialId != null">facial_id = #{facialId},</if>
+            <if test="userNickName != null">user_nick_name = #{userNickName},</if>
+            <if test="userTrueName != null">user_true_name = #{userTrueName},</if>
+            <if test="userAge != null">user_age = #{userAge},</if>
+            <if test="userGender != null">user_gender = #{userGender},</if>
+            <if test="regTime != null">reg_time = #{regTime},</if>
+            <if test="lastLoginTime != null">last_login_time = #{lastLoginTime},</if>
+        </trim>
+        where user_id = #{userId}
+    </update>
+
+    <delete id="deleteAppUserById" parameterType="Long">
+        delete from app_user where user_id = #{userId}
+    </delete>
+
+    <delete id="deleteAppUserByIds" parameterType="String">
+        delete from app_user where user_id in 
+        <foreach item="userId" collection="array" open="(" separator="," close=")">
+            #{userId}
+        </foreach>
+    </delete>
+
+</mapper>
