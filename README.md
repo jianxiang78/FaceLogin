@@ -2,6 +2,8 @@
 
 This project realizes the registration and verification of users through the face recognition technology of the third party artificial intelligence, and completes user login in combination with JWT. It does not include the use of email, SMS and other registration and verification methods.
 
+<img src="screenshot/faceio-login.jpg" alt="faceio-login">
+
 Directory structure of source code\
 |-- FaceLogin\
 |   |-- FaceLoginClient [Front-end]\
@@ -10,6 +12,10 @@ Directory structure of source code\
 |   |-- screenshot
 
 This project is a simple and complete WEB microservice system. The project adopts the development method of separating the front and back ends, and uses different project file paths. The front-end uses React, the back-end uses SpringBoot microservice, and the database uses MySQL. The front end integrates FaceIO in React to realize the docking of AI.
+
+
+<img src="screenshot/faceio-dashboard.jpg" alt="faceio-dashboard">
+
 
 The backend SpringBoot microservice uses port 8080 by default, which can be modified according to your own situation. The file location of the front-end configuration server is "/FaceLogin/FaceLoginClient/src/tool/http-common.js", and the variable name is "serverUrl".
 ````
