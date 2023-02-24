@@ -27,3 +27,8 @@ Front-end development tool: WebStorm 2019\
 Back-end: Java 1.8, Spring Boot, JWT, Mybatis, Maven\
 Back-end development tool: IntelliJ IDEA 2019\
 Database: MySQL 5.7+
+
+I wrote an article on this project. If you are interested, you can visit the following website link\
+https://betterprogramming.pub/how-to-use-faceio-to-develop-the-user-authentication-module-of-web-app-based-on-ai-603fa60921ed\
+https://www.linkedin.com/pulse/how-use-faceio-develop-user-authentication-module-web-jianxiang-sun\
+https://dzone.com/articles/how-to-use-faceio-to-develop-the-user-authenticati
